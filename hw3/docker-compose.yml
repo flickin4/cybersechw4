@@ -1,0 +1,26 @@
+version: '2.4'
+
+services:
+  hostA:
+    container_name: hostA-10.55.0.5
+    image: introsecuwm/vm
+    tty: true
+    networks:
+      vpcbr:
+        ipv4_address: 10.55.0.5
+
+  hostB:
+    container_name: hostB-10.55.0.6
+    image: introsecuwm/vm
+    tty: true
+    networks:
+      vpcbr:
+        ipv4_address: 10.55.0.6
+    
+networks:
+  vpcbr:
+    driver: bridge
+    ipam:
+     config:
+       - subnet: 10.55.0.0/24
+         gateway: 10.55.0.1
